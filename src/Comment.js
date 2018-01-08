@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 import './Comment.css';
+import UserInfo from './UserInfo.js';
+
+/*Example use: 
+
+                <Comment
+                    date={comment.date}
+                    text={comment.text}
+                    author={comment.author}
+                />
+*/
 
 export default class Comment extends React.Component {
 
@@ -14,15 +24,7 @@ export default class Comment extends React.Component {
     render() {
       return (
         <div className="Comment">
-            <div className="UserInfo">
-            <img className="Avatar"
-                src={this.props.author.avatarUrl}
-                alt={this.props.author.name}
-            />
-            <div className="UserInfo-name">
-                {this.props.author.name}
-            </div>
-            </div>
+            <UserInfo user={this.props.author} />
             <div className="Comment-text">
             {this.props.text}
             </div>
