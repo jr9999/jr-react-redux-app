@@ -369,8 +369,14 @@ export default class Welcome extends React.Component {
     
         const element = (
             <div style={{display: 'flex', flexDirection: 'row'}}>
-                <BaseContainer style={{ background: '#2c3e50', color: '#FFF' }}>
-                    <BasicSideNav />
+                <BaseContainer
+                    style={{
+                        background: '#FFF',
+                        color: '#444',
+                        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+                    }}
+                >
+                    <ControlledNav />
                 </BaseContainer>
                 <div style={{padding: 20, width: 500}}>
                     <header className="App-header">
