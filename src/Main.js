@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import Clock from './Clock';
+
 const PlayerAPI = {
     players: [
       { number: 1, name: "Ben Blocker", position: "G" },
@@ -82,8 +84,16 @@ export default class Main extends React.Component {
 
     constructor(props) {
       super(props);
+      this.state = {
+          firstName: "Jeremy",
+          lastName: "Regan"
+      }
     }
   
+    formatName(firstName, lastName) {
+        return firstName + ' ' + lastName;
+    }
+
     render() {
       return (
         <main>
@@ -92,6 +102,15 @@ export default class Main extends React.Component {
                 <Route path='/roster' component={Roster}/>
                 <Route path='/schedule' component={Schedule}/>
             </Switch>
+            <div style={{padding: 20, width: 500}}>
+                <header className="App-header">
+                    <span className="App-title">React test app</span>
+                </header>
+                <div className="App-body">
+                    <span>Hello, {this.formatName(this.state.firstName, this.state.lastName)}</span>
+                    <div><Clock/></div>
+                </div>
+            </div>
         </main>
       );
     }
