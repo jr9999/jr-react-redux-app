@@ -230,6 +230,10 @@ const ControlledNav = () =>
             <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
             <NavText><Link to='/orders'> Orders</Link></NavText>
         </Nav>
+        <Nav id="about">
+            <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
+            <NavText><Link to='/about-us'> About</Link></NavText>
+        </Nav>
     </SideNav>;
 
 const ControlledNavExample2 = () =>
@@ -367,14 +371,8 @@ class X extends React.Component {
     }
 }
 
-export default class Header extends React.Component {
+const Header = () => (
 
-    constructor(props) {
-      super(props);
-    }
-  
-    render() {
-      return (
         <div>
             <BaseContainer
                 style={{
@@ -387,5 +385,5 @@ export default class Header extends React.Component {
             </BaseContainer>
         </div>
       );
-    }
-  }
+
+export default Header
