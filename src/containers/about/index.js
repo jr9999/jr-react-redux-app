@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => (
   <div>
     <h1>About Page</h1>
-    <p>Did you get here via Redux?</p>
+    <p>This is a test app that brings together React, React-Router and Redux</p>
   </div>
 )
 

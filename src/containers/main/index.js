@@ -3,8 +3,8 @@ import { Router, Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import Home from '../home';
-import Orders from './Orders';
-import Products from './Products';
+import Orders from '../orders';
+import Products from '../products';
 import About from '../about'
 
 export default class Main extends React.Component {
