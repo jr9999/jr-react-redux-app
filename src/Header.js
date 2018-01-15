@@ -224,30 +224,11 @@ const ControlledNav = () =>
 
         <Nav id="products">
             <NavIcon><Icon20 icon={ic_business_center} /></NavIcon>
-            <NavText><Link to='/roster'> Products</Link></NavText>
+            <NavText><Link to='/products'> Products</Link></NavText>
         </Nav>
         <Nav id="orders">
             <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
-            <NavText>
-                <Link to='/schedule'>
-                    {' '}<span style={{ paddingRight: 6 }}>Orders</span>{' '}
-                    <span
-                        style={{
-                            textAlign: 'center',
-                            lineHeight: '16px',
-                            height: 16,
-                            width: 16,
-                            margin: '0 auto',
-                            borderRadius: '50%',
-                            fontSize: 9,
-                            display: 'inline-block',
-                            color: '#FFF',
-                            background: '#ff5b57'
-                        }}
-                    >
-                    </span>
-                </Link>
-            </NavText>
+            <NavText><Link to='/orders'> Orders</Link></NavText>
         </Nav>
     </SideNav>;
 
