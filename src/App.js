@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom'
 
 import './App.css';
-import Welcome from './Welcome.js'
+import MainComponent from './MainComponent.js'
 
 class App extends Component {
 
   render() {
     return (
         <div>
-          <Welcome firstName="jeremy" lastName="regan"/>
+          <BrowserRouter>
+            <MainComponent/>
+          </BrowserRouter>
         </div>
     );
   }

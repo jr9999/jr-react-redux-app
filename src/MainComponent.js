@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import Clock from './Clock';
 import Menu from './Menu';
 import Comment from './Comment';
+import Main from './Main';
+import Header from './Header';
  
 //menu-related
 import { render } from 'react-dom';
@@ -359,7 +361,15 @@ const comment = {
     },
   };
 
-export default class Welcome extends React.Component {
+export default class MainComponent extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstName:"jeremy",
+            lastName:"regan"
+        }
+      }
 
     formatName(firstName, lastName) {
         return firstName + ' ' + lastName;
@@ -368,26 +378,12 @@ export default class Welcome extends React.Component {
     render() {
     
         const element = (
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-                <BaseContainer
-                    style={{
-                        background: '#FFF',
-                        color: '#444',
-                        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
-                    }}
-                >
-                    <ControlledNav />
-                </BaseContainer>
-                <div style={{padding: 20, width: 500}}>
-                    <header className="App-header">
-                        <span className="App-title">React test app</span>
-                    </header>
-                    <div className="App-body">
-                        <span>Hello, {this.formatName(this.props.firstName, this.props.lastName)}</span>
-                        <div><Clock/></div>
-                    </div>
-                </div>
-            </div>);
+            <div>
+                <Header />
+                <Main />
+            </div>
+        );
+
         return element;
     }
   }
