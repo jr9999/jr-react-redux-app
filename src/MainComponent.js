@@ -16,7 +16,7 @@ export default class MainComponent extends React.Component {
         const element = (
             <div  style={{display: 'flex', flexDirection: 'row'}}>
                 <Header />
-                <Main />
+                <Main userData={this.props.userData}/>
             </div>
         );
 

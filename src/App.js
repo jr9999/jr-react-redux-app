@@ -4,13 +4,18 @@ import { BrowserRouter } from 'react-router-dom'
 import './App.css';
 import MainComponent from './MainComponent.js'
 
+const userProps = {
+  firstName: "Jeremy",
+  lastName: "Regan"
+};
+
 class App extends Component {
 
   render() {
     return (
         <div>
           <BrowserRouter>
-            <MainComponent/>
+            <MainComponent userData={userProps}/>
           </BrowserRouter>
         </div>
     );

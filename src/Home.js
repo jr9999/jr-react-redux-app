@@ -19,7 +19,7 @@ export default class Home extends React.Component {
                     <span className="App-title">Main Dashboard</span>
                 </header>
                 <div className="App-body">
-                    <span>Hello, {this.formatName(this.props.firstName, this.props.lastName)}</span>
+                    <span>Hello, {this.formatName(this.props.userData.firstName, this.props.userData.lastName)}</span>
                     <div><Clock/></div>
                 </div>
             </div>
