@@ -10,7 +10,21 @@ export const DELETE = 'orders/DELETE'
 const initialState = {
   count: 0,
   isInserting: false,
-  isReady: false
+  isReady: false,
+  ordersList: [
+    {
+      name: "order 1",
+      type: "type 1",
+      price: "1$",
+      id: 1
+    },
+    {
+      name: "order 2",
+      type: "type 2",
+      price: "2$",
+      id: 2
+    }
+  ]
 }
 
 export default (state = initialState, action) => {
