@@ -12,10 +12,6 @@ import {
 
 import Clock from './Clock'
 
-function formatName(firstName, lastName) {
-    return firstName + ' ' + lastName;
-}
-
 const Home = props => (
 <div style={{padding: 20, width: 500}}>
     <h1>Home</h1>
