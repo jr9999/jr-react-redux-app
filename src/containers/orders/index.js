@@ -35,11 +35,7 @@ class Orders extends Component {
   constructor(props) {
     super(props);
   }
-
-  componentWillMount() {
-    this.props.listOrders();
-  }
-
+  
   render() {
     return this.props.isReady
       ? <div style={{padding: 20, width: 500}}>

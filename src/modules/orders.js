@@ -1,11 +1,5 @@
-export const INSERT_REQUESTED = 'orders/INSERT_REQUESTED'
-export const INSERT = 'orders/INSERT'
-export const LIST_REQUESTED = 'orders/LIST_REQUESTED'
-export const LIST = 'orders/LIST'
-export const UPDATE_REQUESTED = 'orders/UPDATE_REQUESTED'
-export const UPDATE = 'orders/UPDATE'
-export const DELETE_REQUESTED = 'orders/DELETE_REQUESTED'
-export const DELETE = 'orders/DELETE'
+import * as actionTypes from '../actions/orderActionTypes';
+import ordersApi from '../api/OrdersApi';
 
 const initialState = {
   count: 0,
@@ -24,54 +18,57 @@ const initialState = {
       price: "2$",
       id: 2
     }
+  ],
+  user: [
+    
   ]
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INSERT_REQUESTED:
+    case actionTypes.INSERT_REQUESTED:
       return {
         ...state,
         isInserting: true
       }
 
-    case INSERT:
+    case actionTypes.INSERT:
       return {
         ...state,
         isInserting: !state.isInserting
       }
 
-      case LIST_REQUESTED:
+      case actionTypes.LIST_REQUESTED:
       return {
         ...state,
         isReady: !state.isReady
       }
 
-    case LIST:
+    case actionTypes.LIST:
       return {
         ...state,
         isReady: true
       }
 
-      case UPDATE_REQUESTED:
+      case actionTypes.UPDATE_REQUESTED:
       return {
         ...state,
         isInserting: true
       }
 
-    case UPDATE:
+    case actionTypes.UPDATE:
       return {
         ...state,
         isInserting: !state.isInserting
       }
 
-      case DELETE_REQUESTED:
+      case actionTypes.DELETE_REQUESTED:
       return {
         ...state,
         isInserting: true
       }
 
-    case DELETE:
+    case actionTypes.DELETE:
       return {
         ...state,
         isInserting: !state.isInserting
@@ -85,35 +82,53 @@ export default (state = initialState, action) => {
 export const insertOrder = () => {
   return dispatch => {
     dispatch({
-      type: INSERT_REQUESTED
+      type: actionTypes.INSERT_REQUESTED
     })
 
     dispatch({
-      type: INSERT
+      type: actionTypes.INSERT
     })
   }
 }
 
+/*
 export const listOrders = () => {
   return dispatch => {
     dispatch({
-      type: LIST_REQUESTED
+      type: actionTypes.LIST_REQUESTED
     })
 
     dispatch({
-      type: LIST
+      type: actionTypes.LIST
     })
   }
+}
+*/
+
+export function listOrders() {
+  // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    return ordersApi.listOrders().then(orders => {
+      dispatch({
+        type: actionTypes.LIST_REQUESTED
+      });
+      dispatch({
+        type: actionTypes.LIST
+      });
+    }).catch(error => {
+      throw(error);
+    });
+  };
 }
 
 export const updateOrder = () => {
   return dispatch => {
     dispatch({
-      type: UPDATE_REQUESTED
+      type: actionTypes.UPDATE_REQUESTED
     })
 
     dispatch({
-      type: UPDATE
+      type: actionTypes.UPDATE
     })
   }
 }
@@ -121,11 +136,11 @@ export const updateOrder = () => {
 export const deleteOrder = () => {
   return dispatch => {
     dispatch({
-      type: DELETE_REQUESTED
+      type: actionTypes.DELETE_REQUESTED
     })
 
     dispatch({
-      type: DELETE
+      type: actionTypes.DELETE
     })
   }
 }

@@ -13,7 +13,7 @@ import {
 import Clock from './Clock'
 
 const Home = props => (
-<div style={{padding: 20, width: 500}}>
+  <div style={{padding: 20, width: 500}}>
     <h1>Home</h1>
     <p>Count: {props.count}</p>
 

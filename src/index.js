@@ -6,11 +6,16 @@ import registerServiceWorker from './registerServiceWorker';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import store, { history } from './store'
+import store, { history } from './configureStore'
 import App from './containers/app'
+
+import {listOrders} from './modules/orders';
 
 //import 'sanitize.css/sanitize.css'
 import './index.css'
+
+//preload data if desired..
+store.dispatch(listOrders());
 
 const target = document.querySelector('#root')
 

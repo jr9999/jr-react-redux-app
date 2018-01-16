@@ -20,9 +20,7 @@ export default class Main extends React.Component {
                 <Route exact path='/' render={(props) => (
                  <Home />
                 )}/>
-                <Route exact path='/orders'  render={(props) => (
-                  <Orders/>
-                )}/>
+                <Route exact path='/orders' component={Orders}/>
                 <Route path='/products' component={Products}/>
                 <Route exact path="/about-us" component={About} />
             </Switch>

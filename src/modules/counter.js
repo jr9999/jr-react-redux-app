@@ -1,7 +1,4 @@
-export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED'
-export const INCREMENT = 'counter/INCREMENT'
-export const DECREMENT_REQUESTED = 'counter/DECREMENT_REQUESTED'
-export const DECREMENT = 'counter/DECREMENT'
+import * as actionTypes from '../actions/counterActionTypes';
 
 const initialState = {
   count: 0,
@@ -11,26 +8,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT_REQUESTED:
+    case actionTypes.INCREMENT_REQUESTED:
       return {
         ...state,
         isIncrementing: true
       }
 
-    case INCREMENT:
+    case actionTypes.INCREMENT:
       return {
         ...state,
         count: state.count + 1,
         isIncrementing: !state.isIncrementing
       }
 
-    case DECREMENT_REQUESTED:
+    case actionTypes.DECREMENT_REQUESTED:
       return {
         ...state,
         isDecrementing: true
       }
 
-    case DECREMENT:
+    case actionTypes.DECREMENT:
       return {
         ...state,
         count: state.count - 1,
@@ -45,11 +42,11 @@ export default (state = initialState, action) => {
 export const increment = () => {
   return dispatch => {
     dispatch({
-      type: INCREMENT_REQUESTED
+      type: actionTypes.INCREMENT_REQUESTED
     })
 
     dispatch({
-      type: INCREMENT
+      type: actionTypes.INCREMENT
     })
   }
 }
@@ -57,12 +54,12 @@ export const increment = () => {
 export const incrementAsync = () => {
   return dispatch => {
     dispatch({
-      type: INCREMENT_REQUESTED
+      type: actionTypes.INCREMENT_REQUESTED
     })
 
     return setTimeout(() => {
       dispatch({
-        type: INCREMENT
+        type: actionTypes.INCREMENT
       })
     }, 3000)
   }
@@ -71,11 +68,11 @@ export const incrementAsync = () => {
 export const decrement = () => {
   return dispatch => {
     dispatch({
-      type: DECREMENT_REQUESTED
+      type: actionTypes.DECREMENT_REQUESTED
     })
 
     dispatch({
-      type: DECREMENT
+      type: actionTypes.DECREMENT
     })
   }
 }
@@ -83,12 +80,12 @@ export const decrement = () => {
 export const decrementAsync = () => {
   return dispatch => {
     dispatch({
-      type: DECREMENT_REQUESTED
+      type: actionTypes.DECREMENT_REQUESTED
     })
 
     return setTimeout(() => {
       dispatch({
-        type: DECREMENT
+        type: actionTypes.DECREMENT
       })
     }, 3000)
   }
