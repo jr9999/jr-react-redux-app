@@ -36,6 +36,15 @@ class Orders extends Component {
 
   constructor(props) {
     super(props);
+
+    this.updateNewOrderState = this.updateNewOrderState.bind(this);
+  }
+
+  updateNewOrderState(event) {
+    const field = event.target.name;
+    const newOrder = this.props.newOrder;
+    newOrder[field] = event.target.value;
+    return this.setState({newOrder: newOrder});
   }
   
   render() {
@@ -58,7 +67,7 @@ class Orders extends Component {
               <h1>New Order Form:</h1>
                 <NewOrderForm 
                   onSave={this.insertOrder}
-                  onChange={this.updateOrder}
+                  onChange={this.updateNewOrderState}
                 />
           </div>
         </div>
@@ -69,7 +78,8 @@ class Orders extends Component {
 const mapStateToProps = state => ({
   isReady: state.orders.isReady,
   isInserting: state.orders.isInserting,
-  ordersList: state.orders.ordersList
+  ordersList: state.orders.ordersList,
+  newOrder: state.orders.newOrder
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

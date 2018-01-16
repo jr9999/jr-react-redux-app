@@ -18,7 +18,8 @@ const initialState = {
       price: "2$",
       id: 2
     }
-  ]
+  ],
+  newOrder: {}
 }
 
 export default (state = initialState, action) => {
