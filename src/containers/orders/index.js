@@ -3,7 +3,9 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import OrdersList from './OrdersList'
+//for more info see https://www.npmjs.com/package/react-table
+import ReactTable from 'react-table'
+import 'react-table/react-table.css'
 
 import {
   insertOrder,
@@ -12,36 +14,19 @@ import {
   deleteOrder
 } from '../../modules/orders'
 
-class OrdersTableRow extends React.Component {
-  render() {
-    const {
-      data
-    } = this.props;
-    const row = data.map((data) =>
-    <tr>
-      <td key={data.name}>{data.name}</td>
-      <td key={data.id}>{data.id}</td>
-      <td key={data.price}>{data.price}</td>
-    </tr>
-    );
-    return (
-      <span>{row}</span>
-    );
-  }
-}
+const columns = [{
+  Header: 'Name',
+  accessor: 'name' // String-based value accessors!
+}, {
+  Header: 'Id',
+  accessor: 'id',
+  Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+}, {
+  Header: 'Price',
+  accessor: 'price',
+  Cell: props => <span className='[price]'>{props.value}</span> // Custom cell components!
+}]
 
-class OrdersTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <table>
-        <OrdersTableRow data={this.props.data} />
-      </table>
-    );
-  }
-}
 
 //can't use the const way and override lifecycle methods like componentDidMount..
 //const Orders = props => (
@@ -60,7 +45,12 @@ class Orders extends Component {
       ? <div style={{padding: 20, width: 500}}>
           <div>Orders</div>
       
-          <div><OrdersTable data={this.props.ordersList}/></div>
+          <div><ReactTable
+                data={this.props.ordersList}
+                columns={columns}
+                defaultPageSize={5}
+                />
+          </div>
           <p>
             <button onClick={this.props.insert} disabled={this.props.isInserting}>Insert Order</button>
           </p>
