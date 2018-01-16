@@ -9,7 +9,8 @@ export const DELETE = 'orders/DELETE'
 
 const initialState = {
   count: 0,
-  isInserting: false
+  isInserting: false,
+  isReady: false
 }
 
 export default (state = initialState, action) => {
@@ -29,13 +30,13 @@ export default (state = initialState, action) => {
       case LIST_REQUESTED:
       return {
         ...state,
-        isInserting: true
+        isReady: !state.isReady
       }
 
     case LIST:
       return {
         ...state,
-        isInserting: !state.isInserting
+        isReady: true
       }
 
       case UPDATE_REQUESTED:

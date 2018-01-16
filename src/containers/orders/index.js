@@ -10,23 +10,39 @@ import {
   deleteOrder
 } from '../../modules/orders'
 
-const Orders = props => (
-<div style={{padding: 20, width: 500}}>
-    <div>
-        Orders
-    </div>
+//can't use the const way and override lifecycle methods like componentDidMount..
+//const Orders = props => (
+class Orders extends Component {
 
-    <p>
-      <button onClick={props.insert} disabled={props.isInserting}>Insert Order</button>
-    </p>
+  constructor(props) {
+    super(props);
+  }
 
-    <div className="Orders-body">
-        <span>The Orders Page Body</span>
-    </div>
-  </div>
-)
+  componentWillMount() {
+    this.props.listOrders();
+  }
+
+  render() {
+    return this.props.isReady
+      ? <div style={{padding: 20, width: 500}}>
+          <div>
+              Orders
+          </div>
+      
+          <p>
+            <button onClick={this.props.insert} disabled={this.props.isInserting}>Insert Order</button>
+          </p>
+      
+          <div className="Orders-body">
+              <span>The Orders Page Body</span>
+          </div>
+        </div>
+      : <div>Loading...</div>
+  }
+}
 
 const mapStateToProps = state => ({
+  isReady: state.orders.isReady,
   isInserting: state.orders.isInserting
 })
 
