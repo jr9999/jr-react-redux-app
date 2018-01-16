@@ -18,9 +18,6 @@ const initialState = {
       price: "2$",
       id: 2
     }
-  ],
-  user: [
-    
   ]
 }
 
@@ -91,7 +88,7 @@ export const insertOrder = () => {
   }
 }
 
-/*
+/* old way... see thunk way below
 export const listOrders = () => {
   return dispatch => {
     dispatch({
@@ -106,9 +103,12 @@ export const listOrders = () => {
 */
 
 export function listOrders() {
+
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return ordersApi.listOrders().then(orders => {
+      //note multiple dispatches.. first indicates list has been requested to indicate to state, 
+      //then once it is done then it dispatches the list command.
       dispatch({
         type: actionTypes.LIST_REQUESTED
       });
