@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './configureStore'
 import App from './containers/app'
 
-import {listOrders} from './modules/orders';
+import {listOrders} from './modules/orderStore';
 
 //import 'sanitize.css/sanitize.css'
 import './index.css'

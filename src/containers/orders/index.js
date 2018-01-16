@@ -13,8 +13,9 @@ import {
   insertOrder,
   listOrders,
   updateOrder,
-  deleteOrder
-} from '../../modules/orders'
+  deleteOrder,
+  updateNewOrder
+} from '../../modules/orderStore'
 
 const columns = [{
   Header: 'Name',
@@ -44,7 +45,7 @@ class Orders extends Component {
     const field = event.target.name;
     const newOrder = this.props.newOrder;
     newOrder[field] = event.target.value;
-    return this.setState({newOrder: newOrder});
+    return updateNewOrder(newOrder);
   }
   
   render() {
@@ -76,17 +77,18 @@ class Orders extends Component {
 }
 
 const mapStateToProps = state => ({
-  isReady: state.orders.isReady,
-  isInserting: state.orders.isInserting,
-  ordersList: state.orders.ordersList,
-  newOrder: state.orders.newOrder
+  isReady: state.orderStore.isReady,
+  isInserting: state.orderStore.isInserting,
+  ordersList: state.orderStore.ordersList,
+  newOrder: state.orderStore.newOrder
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   insertOrder,
   listOrders,
   updateOrder,
-  deleteOrder
+  deleteOrder,
+  updateNewOrder
 }, dispatch)
 
 export default connect(

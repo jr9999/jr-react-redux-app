@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
         isInserting: !state.isInserting
       }
 
-      case actionTypes.LIST_REQUESTED:
+    case actionTypes.LIST_REQUESTED:
       return {
         ...state,
         isReady: !state.isReady
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
         isReady: true
       }
 
-      case actionTypes.UPDATE_REQUESTED:
+    case actionTypes.UPDATE_REQUESTED:
       return {
         ...state,
         isInserting: true
@@ -59,8 +59,18 @@ export default (state = initialState, action) => {
         ...state,
         isInserting: !state.isInserting
       }
+    
+    case actionTypes.UPDATE_NEW_ORDER_REQUESTED:
+      return {
+        ...state
+      }
 
-      case actionTypes.DELETE_REQUESTED:
+    case actionTypes.UPDATE_NEW_ORDER:
+      return {
+        ...state
+      }
+
+    case actionTypes.DELETE_REQUESTED:
       return {
         ...state,
         isInserting: true
@@ -130,6 +140,18 @@ export const updateOrder = () => {
 
     dispatch({
       type: actionTypes.UPDATE
+    })
+  }
+}
+
+export const updateNewOrder = (newOrderProps) => {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.UPDATE_NEW_ORDER_REQUESTED
+    })
+
+    dispatch({
+      type: actionTypes.UPDATE_NEW_ORDER
     })
   }
 }
