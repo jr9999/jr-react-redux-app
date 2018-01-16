@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
+import NewOrderForm from './NewOrderForm'
+
 import {
   insertOrder,
   listOrders,
@@ -53,6 +55,11 @@ class Orders extends Component {
       
           <div className="Orders-body">
               <span>The Orders Page Body</span>
+              <h1>New Order Form:</h1>
+                <NewOrderForm 
+                  onSave={this.insertOrder}
+                  onChange={this.updateOrder}
+                />
           </div>
         </div>
       : <div>Loading...</div>
