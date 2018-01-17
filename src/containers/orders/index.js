@@ -9,10 +9,9 @@ import 'react-table/react-table.css'
 
 import NewOrderForm from './NewOrderForm'
 
-import submitResults from "./submitResults";
+import SubmitResults from "./SubmitResults";
 
 import {
-  insertOrder,
   listOrders,
   updateOrder,
   deleteOrder
@@ -51,13 +50,10 @@ class Orders extends Component {
                 defaultPageSize={5}
                 />
           </div>
-          <p>
-            <button onClick={this.props.insert} disabled={this.props.isInserting}>Insert Order</button>
-          </p>
           <div className="New-Orders-body">
               <h1>New Order Form:</h1>
                 <NewOrderForm 
-                  onSubmit={submitResults} />
+                  onSubmit={SubmitResults} />
           </div>
         </div>
       : <div>Loading...</div>
@@ -71,7 +67,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  insertOrder,
   listOrders,
   updateOrder,
   deleteOrder
