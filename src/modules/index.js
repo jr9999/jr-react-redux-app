@@ -6,7 +6,7 @@ import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
   router: routerReducer,
-  form: reduxFormReducer, // mounted under "form"
   counter,
-  orderStore
+  orderStore,
+  form: reduxFormReducer // mounted under "form"
 })

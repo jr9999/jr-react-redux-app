@@ -77,6 +77,7 @@ export default (state = initialState, action) => {
   }
 }
 
+/*old way.. see thunk way below
 export const insertOrder = () => {
   return dispatch => {
     dispatch({
@@ -87,6 +88,30 @@ export const insertOrder = () => {
       type: actionTypes.INSERT
     })
   }
+}*/
+
+export function insertOrder(newOrder) {
+  //export const insertOrder = () => {
+
+  //var newOrder = values;
+  //var newOrder = {}
+
+  // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    return ordersApi.createOrder(null).then(orders => {
+      //note multiple dispatches.. first indicates list has been requested to indicate to state, 
+      //then once it is done then it dispatches the list command.
+      dispatch({
+        type: actionTypes.INSERT_REQUESTED
+      });
+      dispatch({
+        type: actionTypes.INSERT
+      });
+      dispatch(listOrders());
+    }).catch(error => {
+      throw(error);
+    });
+  };
 }
 
 /* old way... see thunk way below

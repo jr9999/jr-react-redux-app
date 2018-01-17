@@ -9,6 +9,8 @@ import 'react-table/react-table.css'
 
 import NewOrderForm from './NewOrderForm'
 
+import showResults from "./showResults";
+
 import {
   insertOrder,
   listOrders,
@@ -65,8 +67,7 @@ class Orders extends Component {
 const mapStateToProps = state => ({
   isReady: state.orderStore.isReady,
   isInserting: state.orderStore.isInserting,
-  ordersList: state.orderStore.ordersList,
-  newOrder: state.orderStore.newOrder
+  ordersList: state.orderStore.ordersList
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
