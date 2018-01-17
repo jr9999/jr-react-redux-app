@@ -112,18 +112,17 @@ export function insertOrder(newOrder) {
 
 export function insertOrder(newOrder) {
   return function(dispatch) {
-    return dispatch(ordersApi.createOrder(newOrder)
-      .then( (result) => {
-        dispatch({
-          type: actionTypes.INSERT_REQUESTED
-        })
-        dispatch({
-          type: actionTypes.INSERT
-        })
-    }).catch(error => {
-      console.log('caught an error inserting a new order...')
-      throw(error);
-    }));
+    return dispatch({
+      type: actionTypes.INSERT_REQUESTED
+      }).then(ordersApi.createOrder(newOrder)
+        .then( (result) => {
+          dispatch({
+            type: actionTypes.INSERT
+          })
+      }).catch(error => {
+        console.log('caught an error inserting a new order...')
+        throw(error);
+      }));
   }
 }
 
