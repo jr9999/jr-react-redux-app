@@ -39,7 +39,7 @@ class OrdersApi {
       return fetch(request).then(response => {
         return response.json();
       }).catch(error => {
-        return error;
+        throw Error(error);
       });
     }
   

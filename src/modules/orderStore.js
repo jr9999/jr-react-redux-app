@@ -38,6 +38,13 @@ export default (state = initialState, action) => {
         isInserting: !state.isInserting
       }
 
+    case actionTypes.INSERT_FAILED:
+      console.log('insert failed...');
+        return {
+          ...state,
+          isInserting: !state.isInserting
+        }
+
     case actionTypes.LIST_REQUESTED:
       return {
         ...state,
@@ -92,36 +99,28 @@ export const insertOrder = () => {
   }
 }*/
 
-/*pretty much works.. 
 export function insertOrder(newOrder) {
-  return function(dispatch) {
-    return dispatch(ordersApi.createOrder(newOrder), 
-      dispatch.then( () => {
-        dispatch({
-          type: actionTypes.INSERT_REQUESTED
-        })
-        dispatch({
-          type: actionTypes.INSERT
-        })
-    }).catch(error => {
-      throw(error);
-    }));
-  }
-}
-*/
-
-export function insertOrder(newOrder) {
+  var didSucceed = true;
   return function(dispatch) {
     return dispatch({
       type: actionTypes.INSERT_REQUESTED
       }).then(ordersApi.createOrder(newOrder)
-        .then( (result) => {
-          dispatch({
-            type: actionTypes.INSERT
-          })
-      }).catch(error => {
-        console.log('caught an error inserting a new order...')
-        throw(error);
+        .catch(
+          error => {
+            console.log('caught an error inserting a new order...')
+            //throw(error);
+            didSucceed = false;
+            dispatch({
+              type: actionTypes.INSERT_FAILED
+              });
+          }
+        )
+        .then( () => {
+          if(didSucceed) {
+            dispatch({
+              type: actionTypes.INSERT
+            })
+          }
       }));
   }
 }
