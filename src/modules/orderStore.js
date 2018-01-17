@@ -90,28 +90,46 @@ export const insertOrder = () => {
   }
 }*/
 
-export function insertOrder(newOrder) {
-  //export const insertOrder = () => {
-
-  //var newOrder = values;
-  //var newOrder = {}
-
-  // make async call to api, handle promise, dispatch action when promise is resolved
+/*a try with thunk
+export function insertOrder(newOrder, dispatch) {
   return function(dispatch) {
-    return ordersApi.createOrder(null).then(orders => {
-      //note multiple dispatches.. first indicates list has been requested to indicate to state, 
-      //then once it is done then it dispatches the list command.
-      dispatch({
-        type: actionTypes.INSERT_REQUESTED
-      });
-      dispatch({
-        type: actionTypes.INSERT
-      });
-      dispatch(listOrders());
-    }).catch(error => {
+    return ordersApi.createOrder(newOrder)
+      .then(result => {
+        console.log('finished inserting new order');
+      })
+      .catch(error => {
       throw(error);
     });
   };
+}
+*/
+
+/*another try :/
+export function insertOrder(newOrder, dispatch) {
+  return function action(dispatch) {
+    return ordersApi.createOrder(newOrder).then( 
+      response => dispatch(
+      dispatch({
+        type: actionTypes.INSERT
+      }),
+      err => dispatch(console.log(err))
+      ));
+    };
+}
+*/
+
+export function insertOrder(newOrder, dispatch) {
+  return function(newOrder, dispatch) {
+    return dispatch(ordersApi.createOrder(newOrder).then( () => {
+      dispatch({
+        type: actionTypes.INSERT_REQUESTED
+      })
+      dispatch({
+        type: actionTypes.INSERT
+      })
+    }))
+    ;
+  }
 }
 
 /* old way... see thunk way below

@@ -9,7 +9,7 @@ import 'react-table/react-table.css'
 
 import NewOrderForm from './NewOrderForm'
 
-import showResults from "./showResults";
+import submitResults from "./submitResults";
 
 import {
   insertOrder,
@@ -57,7 +57,7 @@ class Orders extends Component {
           <div className="New-Orders-body">
               <h1>New Order Form:</h1>
                 <NewOrderForm 
-                  onSubmit={insertOrder} />
+                  onSubmit={submitResults} />
           </div>
         </div>
       : <div>Loading...</div>
