@@ -13,8 +13,7 @@ import {
   insertOrder,
   listOrders,
   updateOrder,
-  deleteOrder,
-  updateNewOrder
+  deleteOrder
 } from '../../modules/orderStore'
 
 const columns = [{
@@ -37,15 +36,6 @@ class Orders extends Component {
 
   constructor(props) {
     super(props);
-
-    this.updateNewOrderState = this.updateNewOrderState.bind(this);
-  }
-
-  updateNewOrderState(event) {
-    const field = event.target.name;
-    const newOrder = this.props.newOrder;
-    newOrder[field] = event.target.value;
-    return updateNewOrder(newOrder);
   }
   
   render() {
@@ -62,14 +52,10 @@ class Orders extends Component {
           <p>
             <button onClick={this.props.insert} disabled={this.props.isInserting}>Insert Order</button>
           </p>
-      
-          <div className="Orders-body">
-              <span>The Orders Page Body</span>
+          <div className="New-Orders-body">
               <h1>New Order Form:</h1>
                 <NewOrderForm 
-                  onSave={this.insertOrder}
-                  onChange={this.updateNewOrderState}
-                />
+                  onSubmit={insertOrder} />
           </div>
         </div>
       : <div>Loading...</div>
@@ -87,8 +73,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   insertOrder,
   listOrders,
   updateOrder,
-  deleteOrder,
-  updateNewOrder
+  deleteOrder
 }, dispatch)
 
 export default connect(

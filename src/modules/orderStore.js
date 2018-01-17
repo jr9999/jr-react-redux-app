@@ -59,16 +59,6 @@ export default (state = initialState, action) => {
         ...state,
         isInserting: !state.isInserting
       }
-    
-    case actionTypes.UPDATE_NEW_ORDER_REQUESTED:
-      return {
-        ...state
-      }
-
-    case actionTypes.UPDATE_NEW_ORDER:
-      return {
-        ...state
-      }
 
     case actionTypes.DELETE_REQUESTED:
       return {
@@ -140,18 +130,6 @@ export const updateOrder = () => {
 
     dispatch({
       type: actionTypes.UPDATE
-    })
-  }
-}
-
-export const updateNewOrder = (newOrderProps) => {
-  return dispatch => {
-    dispatch({
-      type: actionTypes.UPDATE_NEW_ORDER_REQUESTED
-    })
-
-    dispatch({
-      type: actionTypes.UPDATE_NEW_ORDER
     })
   }
 }
