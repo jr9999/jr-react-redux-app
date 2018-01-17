@@ -84,7 +84,10 @@ const NewOrderForm = props => {
             </div>
           </div>
           <div>
-            <button type="submit">Submit</button>       
+            <button type="submit">Submit</button> 
+            <button type="button" disabled={pristine || submitting} onClick={reset}>
+                Clear Values
+            </button>      
           </div>
         </form>
     );

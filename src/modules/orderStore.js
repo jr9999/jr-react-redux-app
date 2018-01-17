@@ -25,12 +25,14 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INSERT_REQUESTED:
+      console.log('insert requested...');
       return {
         ...state,
         isInserting: true
       }
 
     case actionTypes.INSERT:
+    console.log('insert has been performed...');
       return {
         ...state,
         isInserting: !state.isInserting
@@ -90,45 +92,38 @@ export const insertOrder = () => {
   }
 }*/
 
-/*a try with thunk
-export function insertOrder(newOrder, dispatch) {
+/*pretty much works.. 
+export function insertOrder(newOrder) {
   return function(dispatch) {
-    return ordersApi.createOrder(newOrder)
-      .then(result => {
-        console.log('finished inserting new order');
-      })
-      .catch(error => {
+    return dispatch(ordersApi.createOrder(newOrder), 
+      dispatch.then( () => {
+        dispatch({
+          type: actionTypes.INSERT_REQUESTED
+        })
+        dispatch({
+          type: actionTypes.INSERT
+        })
+    }).catch(error => {
       throw(error);
-    });
-  };
+    }));
+  }
 }
 */
 
-/*another try :/
-export function insertOrder(newOrder, dispatch) {
-  return function action(dispatch) {
-    return ordersApi.createOrder(newOrder).then( 
-      response => dispatch(
-      dispatch({
-        type: actionTypes.INSERT
-      }),
-      err => dispatch(console.log(err))
-      ));
-    };
-}
-*/
-
-export function insertOrder(newOrder, dispatch) {
-  return function(newOrder, dispatch) {
-    return dispatch(ordersApi.createOrder(newOrder).then( () => {
-      dispatch({
-        type: actionTypes.INSERT_REQUESTED
-      })
-      dispatch({
-        type: actionTypes.INSERT
-      })
-    }))
-    ;
+export function insertOrder(newOrder) {
+  return function(dispatch) {
+    return dispatch(ordersApi.createOrder(newOrder)
+      .then( (result) => {
+        dispatch({
+          type: actionTypes.INSERT_REQUESTED
+        })
+        dispatch({
+          type: actionTypes.INSERT
+        })
+    }).catch(error => {
+      console.log('caught an error inserting a new order...')
+      throw(error);
+    }));
   }
 }
 

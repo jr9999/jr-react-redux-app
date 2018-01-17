@@ -4,7 +4,7 @@ import {
   insertOrder
 } from '../../modules/orderStore'
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+//const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export default (async function submitResults(values) {
   //await sleep(500); // simulate server latency
