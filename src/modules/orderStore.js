@@ -130,30 +130,23 @@ accepts dispatch argument
 
 /*es7 thunk way
 */
-export function insertOrder(newOrder) {
-  var didSucceed = true;     
-    return async (dispatch) => {
-        dispatch({
+export function insertOrder(newOrder) { 
+  return async (dispatch) => {
+      dispatch({
         type: actionTypes.INSERT_REQUESTED
-        });
-        
-        try {
-          await ordersApi.createOrder(newOrder)
-            .then( () => {
-              if(didSucceed) {
-                dispatch({
-                  type: actionTypes.INSERT
-                })
-              }
-            });
-        } catch (e) {
-          console.log('caught an error inserting a new order...')
-          didSucceed = false;
-
+      });
+      
+      try {
+        await ordersApi.createOrder(newOrder)
           dispatch({
-            type: actionTypes.INSERT_FAILED
-            });
-        }
+            type: actionTypes.INSERT
+          })
+      } catch (e) {
+        console.log('caught an error inserting a new order...')
+        dispatch({
+          type: actionTypes.INSERT_FAILED
+        });
+      }
   }
 }
 

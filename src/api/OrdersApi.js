@@ -36,11 +36,13 @@ class OrdersApi {
       });
   
   
-      return fetch(request).then(response => {
+      /*return fetch(request).then(response => {
         return response.json();
       }).catch(error => {
         throw Error(error);
       });
+      */
+      return {isSuccessful:true};
     }
   
     static deleteOrder(order) {
