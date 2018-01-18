@@ -9,9 +9,8 @@ import 'react-table/react-table.css'
 
 import NewOrderForm from './NewOrderForm'
 
-import SubmitResults from "./SubmitResults";
-
 import {
+  insertOrder,
   listOrders,
   updateOrder,
   deleteOrder
@@ -53,7 +52,7 @@ class Orders extends Component {
           <div className="New-Orders-body">
               <h1>New Order Form:</h1>
                 <NewOrderForm 
-                  onSubmit={SubmitResults} />
+                  onSubmit={this.props.insertOrder} />
           </div>
         </div>
       : <div>Loading...</div>
@@ -69,7 +68,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   listOrders,
   updateOrder,
-  deleteOrder
+  deleteOrder,
+  insertOrder
 }, dispatch)
 
 export default connect(

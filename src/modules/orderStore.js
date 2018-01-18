@@ -101,28 +101,33 @@ export const insertOrder = () => {
 
 export function insertOrder(newOrder) {
   var didSucceed = true;
-  return function(dispatch) {
-    return dispatch({
-      type: actionTypes.INSERT_REQUESTED
-      }).then(ordersApi.createOrder(newOrder)
-        .catch(
-          error => {
-            console.log('caught an error inserting a new order...')
-            //throw(error);
-            didSucceed = false;
-            dispatch({
-              type: actionTypes.INSERT_FAILED
-              });
-          }
-        )
-        .then( () => {
-          if(didSucceed) {
-            dispatch({
-              type: actionTypes.INSERT
-            })
-          }
-      }));
-  }
+  //return function(dispatch) {
+     
+    return (dispatch) => {
+        dispatch({
+        type: actionTypes.INSERT_REQUESTED
+        });
+        
+        ordersApi.createOrder(newOrder)
+          .catch(
+            error => {
+              console.log('caught an error inserting a new order...')
+              //throw(error);
+              didSucceed = false;
+              dispatch({
+                type: actionTypes.INSERT_FAILED
+                });
+            }
+          )
+          .then( () => {
+            if(didSucceed) {
+              dispatch({
+                type: actionTypes.INSERT
+              })
+            }
+          });
+        }
+  //}
 }
 
 /* old way... see thunk way below
