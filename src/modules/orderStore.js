@@ -129,6 +129,8 @@ accepts dispatch argument
 */
 
 /*es7 thunk way
+note multiple dispatches.. first indicates list has been requested to indicate to state, 
+then once it is done then it dispatches the list command.
 */
 export function insertOrder(newOrder) { 
   return async (dispatch) => {
@@ -165,22 +167,22 @@ export const listOrders = () => {
 */
 
 export function listOrders() {
-
   // make async call to api, handle promise, dispatch action when promise is resolved
-  return function(dispatch) {
-    return ordersApi.listOrders().then(orders => {
-      //note multiple dispatches.. first indicates list has been requested to indicate to state, 
-      //then once it is done then it dispatches the list command.
-      dispatch({
-        type: actionTypes.LIST_REQUESTED
-      });
-      dispatch({
-        type: actionTypes.LIST
-      });
-    }).catch(error => {
-      throw(error);
+  return async (dispatch) => {
+    dispatch({
+      type: actionTypes.LIST_REQUESTED
     });
-  };
+
+    try{
+      await ordersApi.listOrders().then(orders => {
+        dispatch({
+          type: actionTypes.LIST
+        })
+      })
+    } catch(error) {
+      throw(error)
+    }
+  }
 }
 
 export const updateOrder = () => {
