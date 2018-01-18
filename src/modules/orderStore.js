@@ -99,10 +99,39 @@ export const insertOrder = () => {
   }
 }*/
 
+/*es6 first attempt thunk way.. does not use async/await though, just returns anon function that
+accepts dispatch argument
+
+ export function insertOrder(newOrder) {
+   var didSucceed = true;
+  return function(dispatch) {
+    return dispatch({
+      type: actionTypes.INSERT_REQUESTED
+      }).then(ordersApi.createOrder(newOrder)
+        .catch(
+          error => {
+            console.log('caught an error inserting a new order...')
+            //throw(error);
+            didSucceed = false;
+            dispatch({
+              type: actionTypes.INSERT_FAILED
+              });
+          }
+        )
+        .then( () => {
+          if(didSucceed) {
+            dispatch({
+              type: actionTypes.INSERT
+            })
+          }
+      }));
+  }
+*/
+
+/*es7 thunk way
+*/
 export function insertOrder(newOrder) {
-  var didSucceed = true;
-  //return function(dispatch) {
-     
+  var didSucceed = true;     
     return async (dispatch) => {
         dispatch({
         type: actionTypes.INSERT_REQUESTED
@@ -120,7 +149,7 @@ export function insertOrder(newOrder) {
         } catch (e) {
           console.log('caught an error inserting a new order...')
           didSucceed = false;
-          
+
           dispatch({
             type: actionTypes.INSERT_FAILED
             });
