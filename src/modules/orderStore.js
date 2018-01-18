@@ -103,31 +103,29 @@ export function insertOrder(newOrder) {
   var didSucceed = true;
   //return function(dispatch) {
      
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch({
         type: actionTypes.INSERT_REQUESTED
         });
         
-        ordersApi.createOrder(newOrder)
-          .catch(
-            error => {
-              console.log('caught an error inserting a new order...')
-              //throw(error);
-              didSucceed = false;
-              dispatch({
-                type: actionTypes.INSERT_FAILED
-                });
-            }
-          )
-          .then( () => {
-            if(didSucceed) {
-              dispatch({
-                type: actionTypes.INSERT
-              })
-            }
-          });
+        try {
+          await ordersApi.createOrder(newOrder)
+            .then( () => {
+              if(didSucceed) {
+                dispatch({
+                  type: actionTypes.INSERT
+                })
+              }
+            });
+        } catch (e) {
+          console.log('caught an error inserting a new order...')
+          didSucceed = false;
+          
+          dispatch({
+            type: actionTypes.INSERT_FAILED
+            });
         }
-  //}
+  }
 }
 
 /* old way... see thunk way below
