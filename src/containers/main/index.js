@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Router, Route, Switch } from 'react-router'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Route, Switch } from 'react-router'
 
 import Home from '../home';
 import Orders from '../orders';
@@ -8,10 +7,6 @@ import Products from '../products';
 import About from '../about'
 
 export default class Main extends React.Component {
-
-    constructor(props) {
-      super(props);
-    }
 
     render() {
       return (

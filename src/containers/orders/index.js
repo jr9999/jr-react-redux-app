@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -33,10 +32,6 @@ const columns = [{
 //can't use the const way and override lifecycle methods like componentDidMount..
 //const Orders = props => (
 class Orders extends Component {
-
-  constructor(props) {
-    super(props);
-  }
   
   render() {
     return this.props.isReady

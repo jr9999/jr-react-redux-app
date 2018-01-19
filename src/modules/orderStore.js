@@ -180,6 +180,7 @@ export function listOrders() {
         })
       })
     } catch(error) {
+      console.log('caught an error getting list from server...')
       throw(error)
     }
   }

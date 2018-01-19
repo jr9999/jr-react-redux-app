@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /*
 This is more of a "classic" style React class component, where it overrides lifecycle methods
